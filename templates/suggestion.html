@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="{{ url_for('static', filename='mystyle.css') }}"
+      rel="stylesheet"
+    />
+    <style>
+      .suggestion-box {
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+        border-radius: 5px;
+        padding: 20px;
+        max-width: 600px;
+        margin: 50px auto;
+      }
+      .suggestion-box h4 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      .suggestion-box p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+      .suggestion-box .btn {
+        margin: 5px 5px 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="banner" onclick="window.location.href = '/';"></div>
+
+      <div class="suggestion-box">
+        <h4 class="mt-4">{{ msg }}</h4>
+        <p>Here are some suggested words</p>
+        <div>
+          {% for suggestion in suggestions.split(", ") %}
+          <button
+            class="btn btn-primary mb-2"
+            onclick="window.location.href = '/detail/{{ suggestion.strip() }}'"
+          >
+            {{ suggestion.strip() }}
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item">
+            <a href="/" class="nav-link px-2 text-muted">Home</a>
+          </li>
+        </ul>
+        <p class="text-center text-muted">© 2024 Bahtiar.</p>
+      </footer>
+    </div>
+  </body>
+</html>
